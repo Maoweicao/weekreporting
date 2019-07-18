@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ReportList</title>
+</head>
+<body>
+    <h1>Report Time List</h1>
+    <p>Show the reporter last report time</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Reporter</th>
+                <th>Report Time</th>
+                <th>How many days are there from today</th>
+            </tr>
+        </thead>
+        <tbody th:remove="all-but-first">
+            <tr th:each="item : ${reportList.content}">
+                <td th:text="${item.reporter}">Reporter</td>
+                <td th:text="${item.reportTime}">2019-7-17</td>
+                <td th:text="${item.difftime}">N/A</td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        <div th:if="${reportList.totalPages}>1">
+            <a href="?start=0">[Home]</a>
+            <a  th:if="${reportList.number}>0" th:href="@{'?start='+${reportList.number-1}}">[Previous]</a>
+            &nbsp;&nbsp;<span th:text="${reportList.number+1}+'/'+${reportList.totalPages}"></span>&nbsp;&nbsp;
+            <a th:if="${reportList.number}<${reportList.totalPages}" th:href="@{'?start='+${reportList.number+1}}">[Next]</a>
+            <a th:if="${reportList.number}<${reportList.totalPages}"  th:href="@{'?start='+${reportList.totalPages-1}}">[Last]</a>
+        </div>
+        <div th:if="${reportList.totalPages}<= 1">
+            <p>Already show ALL Content.</p>
+        </div>
+    </div>
+    <footer> 2019 &copy;Liu xin Made it.</footer>
+</body>
+</html>

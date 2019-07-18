@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ReportList</title>
+</head>
+<body>
+    <h1>Report List</h1>
+    <p>There is all Report,you can see other's learned or problem.Good Luck!God bless You.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Report Id</th>
+                <th>Reporter</th>
+                <th>What you do</th>
+                <th>What you learned</th>
+                <th>Have problem</th>
+                <th>What you need</th>
+                <th>Report Time</th>
+            </tr>
+        </thead>
+        <tbody th:remove="all-but-first">
+            <tr th:each="item : ${reportList.content}">
+                <td th:text="${item.id}">Id</td>
+                <td th:text="${item.reporter}">Reporter</td>
+                <td th:text="${item.whatyoudo}">I make this system.</td>
+                <td th:text="${item.whatyouget}">I learned how to use themeleaf</td>
+                <td th:text="${item.whatproblem}">But I don't konw it can works?</td>
+                <td th:text="${item.whatyouneed}">I think it need more test.</td>
+                <td th:text="${item.reportTime}">2019-7-17</td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        <div th:if="${reportList.totalPages}>1">
+            <a href="?start=0">[Home]</a>
+            <a  th:if="${reportList.number}>0" th:href="@{'?start='+${reportList.number-1}}">[Previous]</a>
+            &nbsp;&nbsp;<span th:text="${reportList.number+1}+'/'+${reportList.totalPages}"></span>&nbsp;&nbsp;
+            <a th:if="${reportList.number}<${reportList.totalPages}" th:href="@{'?start='+${reportList.number+1}}">[Next]</a>
+            <a th:if="${reportList.number}<${reportList.totalPages}"  th:href="@{'?start='+${reportList.totalPages-1}}">[Last]</a>
+        </div>
+        <div th:if="${reportList.totalPages}<= 1">
+            <p>Already show ALL Content.</p>
+        </div>
+    </div>
+    <footer> 2019 &copy;Liu xin Made it.</footer>
+</body>
+</html>

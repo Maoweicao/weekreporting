@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Report</title>
+</head>
+<body>
+    <h1>WeekReport</h1>
+    <form action="#" th:action="@{/reporting}" th:object="${reporting}" method="post">
+        <p>Id:<input type="text" value="Automatic allocation" disabled> </p>
+        <p>Reporter:<input type="text" th:field="*{reporter}" required></p>
+        <p>Reporting Date:<input type="date" th:field="*{reportTime}" required></p>
+        <p>What you do this week?:<input type="text" th:field="*{whatyoudo}"></p>
+        <p>What you learn this week?:<input type="text" th:field="*{whatyouget}"></p>
+        <p>What problem you met?:<input type="text" th:field="*{whatproblem}"></p>
+        <p>How can we help you?:<input type="text" th:field="*{whatyouneed}"></p>
+        <input type="submit" value="Submit">
+        <input type="reset" value="Reset">
+    </form>
+    <footer> 2019 &copy;Liu xin Made it.</footer>
+</body>
+</html>
